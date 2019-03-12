@@ -5,15 +5,32 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as v;
 
+/// A special FAB that has functionality that supports [Form] interactions.  For
+/// example, if the [Form] validation failed, the FAB has a shake animation with
+/// transitions to an error state and back.  If the [Form] validation was
+/// successful, the FAB has a loading state.
+///
+/// To disable the FAB, set the [onSubmit] to [null].  If [onSubmit] is a valid
+/// callback then the FAB follows a specific sequence of events when pressed.
+/// First, it will attempt to call [onValidate].  If that returns [false], the
+/// FAB will transition to an error state and back.  If the [onValidate] returns
+/// [true] (or [onValidate] is [null]), then the FAB will call [onSubmit].
+///
+/// If the submit is asynchronous, the FAB supports setting the [loading] to
+/// [true], which triggers a loading state that informs the user that a loading
+/// action is being performed and the FAB will ignore all further press events.
+///
+/// An optional [controller] may be sent in to listen for the error transition
+/// states as well as optionally firing both the pressed and error events to the
+/// FAB.
 class FormFloatingActionButton extends StatefulWidget {
   FormFloatingActionButton({
     this.color,
-    FormFloatingActionButtonController controller,
+    this.controller,
     this.duration = const Duration(milliseconds: 500),
     this.errorColor = Colors.red,
     this.errorIcon = Icons.close,
     this.icon = Icons.arrow_forward,
-    this.isExtended = false,
     Key key,
     this.loading = false,
     this.onSubmit,
@@ -23,18 +40,47 @@ class FormFloatingActionButton extends StatefulWidget {
         assert(errorColor != null),
         assert(errorIcon != null),
         assert(icon != null),
-        this.controller = controller,
         super(key: key);
 
+  /// Background color of the FAB for the default / steady state.  If not set
+  /// this will default to the accent color of the current [Theme].
   final Color color;
+
+  /// Optional controller to be able to listen for error state events as well as
+  /// firing pressed and error events directly.
   final FormFloatingActionButtonController controller;
+
+  /// Duration for the error transition.
   final Duration duration;
+
+  /// Background color of the FAB when in an error state.
   final Color errorColor;
+
+  /// Icon to display when the FAB is in an error state.
   final IconData errorIcon;
+
+  /// Icon to display when the FAB is in the default / steady state.
   final IconData icon;
-  final bool isExtended;
+
+  /// Set to [true] if the FAB should ignore all further pressed events and
+  /// should display a loading indicator.  Both [false] or [null] will be
+  /// treated the same.
   final bool loading;
+
+  /// Set to a [null] value to disable pressed events for the FAB.  Set to a
+  /// valid callback function to be called when the FAB is pressed and
+  /// validation is successful.
+  ///
+  /// If [loading] is set to [true], this value will be ignored.
   final VoidCallback onSubmit;
+
+  /// Set to a [null] value to disable validation and treat all pressed events
+  /// as if they passed validation.  Set to a callback to perform validation on
+  /// pressed events before calling [onSubmit].
+  ///
+  /// A return value of [true] states that validation was successful.  A return
+  /// value of [faluse] states that an error was detected by the validation
+  /// function and that [onSubmit] must not be called.
   final ValueGetter<Future<bool>> onValidate;
 
   @override
@@ -190,7 +236,6 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
           transform: Matrix4.translation(_getTranslation()),
           child: FloatingActionButton(
             backgroundColor: _fabColor,
-            isExtended: widget.isExtended,
             onPressed: widget.loading == true || widget.onSubmit == null
                 ? null
                 : () => _buttonPressed(),
@@ -218,29 +263,52 @@ class FormFloatingActionButtonController {
     _errorStateController.add(state);
   }
 
+  /// Adds a listener for when an error is triggered within the FAB.  This can
+  /// be used by outer widgets to be notified that the FAB failed validation.
   StreamSubscription<bool> addErrorListener(void listener(bool event)) {
     return _errorController.stream.listen(listener);
   }
 
+  /// Adds an error state listener for the FAB.  This can be used to detect when
+  /// the FAB begins the error animation as well as when it completes the error
+  /// transition.
+  ///
+  /// A potential use case could be that a wrapping widget may want to disable
+  /// inputs during the error animation and only re-enable the form fields once
+  /// the animation is complete.
   StreamSubscription<FormFloatingActionButtonErrorState> addErrorStateListener(
       void listener(FormFloatingActionButtonErrorState event)) {
     return _errorStateController.stream.listen(listener);
   }
 
+  /// Adds a listener for when the pressed events happen within the FAB.  This
+  /// is used internally by the FAB.  It's not recommended that external widgets
+  /// add these listeners as these will be fired regardless of validation
+  /// status.
   StreamSubscription<bool> addPressedListener(void listener(bool event)) {
     return _pressedController.stream.listen(listener);
   }
 
+  /// Disposes the controller and frees up all associated resources.  This
+  /// should be called in the [dispose] function for the owing [State] object.
   void dispose() {
     _errorController.close();
     _errorStateController.close();
     _pressedController.close();
   }
 
+  /// Fires an error to the FAB.  This will trigger the error transition and
+  /// shaking.  This should be called from places like a [Form] validation or
+  /// [TextFormField] via [onFieldSubmitted] or other submit-esque function
+  /// within your widget.
   void fireError() {
     _errorController.add(true);
   }
 
+  /// Fires the pressed state for the FAB.  This will trigger the FAB to act as
+  /// if the user had pressed the button via the UI.  The full validation cycle
+  /// will be executed and if validation passes, the [onSubmit] will ultimately
+  /// be called.
   void firePressed() {
     _pressedController.add(true);
   }
