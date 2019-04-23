@@ -1,7 +1,8 @@
 name: form_floating_action_button
-description: A simple Floating Action Button that can be used in forms to provide loading and validation feedback
+description: A Floating Action Button that can be used in forms to provide loading and validation feedback
 version: 1.0.0
 author: Jeff Peiffer <jpeiffer@gmail.com>
+license: MIT
 homepage: https://github.com/jpeiffer/form_floating_action_button
 
 environment:
@@ -14,6 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: '1.4.0'
+  pedantic: any
 
 flutter:
+  uses-material-design: true
