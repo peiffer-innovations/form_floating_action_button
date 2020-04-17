@@ -24,3 +24,9 @@ jobs:
         run: dartfmt --set-exit-if-changed -w lib test
       - name: Run tests
         run: flutter test
+      - name: Publish
+        uses: sakebook/actions-flutter-pub-publisher@v1.2.1
+        with:
+          credential: ${{ secrets.CREDENTIAL_JSON }}
+          flutter_package: false
+          skip_test: true
