@@ -5,7 +5,7 @@ license: MIT
 homepage: https://github.com/peiffer-innovations/form_floating_action_button
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,7 +15,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: any
 
 flutter:
   uses-material-design: true

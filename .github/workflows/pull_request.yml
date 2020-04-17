@@ -1,0 +1,24 @@
+name: Dart Pull Request Checker
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: cirrusci/flutter:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: flutter packages upgrade
+    - name: Flutter Analyzer
+      run: flutter analyze
+    - name: Code Format
+      run: dartfmt --set-exit-if-changed -w lib test
+    - name: Run tests
+      run: flutter test

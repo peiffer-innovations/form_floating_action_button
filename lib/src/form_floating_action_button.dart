@@ -176,11 +176,11 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   }
 
   Future<void> _buttonPressed(BuildContext context) async {
-    bool valid = true;
+    var valid = true;
     if (widget.onValidate != null) {
       valid = await widget.onValidate();
     } else {
-      FormState formState = Form.of(context);
+      var formState = Form.of(context);
       if (formState != null) {
         valid = formState.validate();
       }
@@ -198,8 +198,8 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   ///
   /// https://stackoverflow.com/questions/49609296/flipping-and-shaking-of-tile-animation-using-flutter-dart
   v.Vector3 _getTranslation() {
-    double progress = _controller?.value ?? 0;
-    double offset = sin(progress * pi * 5);
+    var progress = _controller?.value ?? 0;
+    var offset = sin(progress * pi * 5);
 
     offset *= 12;
     return v.Vector3(offset, 0.0, 0.0);
@@ -231,7 +231,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
 
   @override
   Widget build(BuildContext context) {
-    Duration switchDuration =
+    var switchDuration =
         Duration(milliseconds: widget.duration.inMilliseconds ~/ 5);
 
     return StreamBuilder<double>(
@@ -271,7 +271,8 @@ class FormFloatingActionButtonController {
 
   /// Adds a listener for when an error is triggered within the FAB.  This can
   /// be used by outer widgets to be notified that the FAB failed validation.
-  StreamSubscription<bool> addErrorListener(void listener(bool event)) {
+  StreamSubscription<bool> addErrorListener(
+      void Function(bool event) listener) {
     return _errorController.stream.listen(listener);
   }
 
@@ -283,7 +284,7 @@ class FormFloatingActionButtonController {
   /// inputs during the error animation and only re-enable the form fields once
   /// the animation is complete.
   StreamSubscription<FormFloatingActionButtonErrorState> addErrorStateListener(
-      void listener(FormFloatingActionButtonErrorState event)) {
+      void Function(FormFloatingActionButtonErrorState event) listener) {
     return _errorStateController.stream.listen(listener);
   }
 
@@ -291,7 +292,8 @@ class FormFloatingActionButtonController {
   /// is used internally by the FAB.  It's not recommended that external widgets
   /// add these listeners as these will be fired regardless of validation
   /// status.
-  StreamSubscription<bool> addPressedListener(void listener(bool event)) {
+  StreamSubscription<bool> addPressedListener(
+      void Function(bool event) listener) {
     return _pressedController.stream.listen(listener);
   }
 
