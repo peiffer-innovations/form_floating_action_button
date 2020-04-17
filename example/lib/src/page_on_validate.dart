@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:form_floating_action_button/form_floating_action_button.dart';
 
 class PageOnValidate extends StatefulWidget {
+  PageOnValidate({
+    Key key,
+  }) : super(
+          key: key,
+        );
+
   @override
   _PageOnValidateState createState() => _PageOnValidateState();
 }
