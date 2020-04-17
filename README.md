@@ -1,7 +1,8 @@
 # form_floating_action_button
 
-A pure Dart Flutter plugin to add some basic form functionality to the Floating
-Action Button.
+![Flutter Publisher](https://github.com/peiffer-innovations/form_floating_action_button/workflows/Flutter%20Publisher/badge.svg)
+
+A plugin to add some basic form functionality to the Floating Action Button.
 
 ## Demo
 
