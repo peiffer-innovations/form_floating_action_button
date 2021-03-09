@@ -6,7 +6,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   MyApp({
-    Key key,
+    Key? key,
   }) : super(
           key: key,
         );
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -38,7 +38,7 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -51,7 +51,7 @@ class MyHomePage extends StatelessWidget {
               child: Text('On Validate Example'),
             ),
             SizedBox(height: 16.0),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

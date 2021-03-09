@@ -32,24 +32,20 @@ class FormFloatingActionButton extends StatefulWidget {
     this.errorColor = Colors.red,
     this.errorIcon = Icons.close,
     this.icon = Icons.arrow_forward,
-    Key key,
+    Key? key,
     this.loading = false,
     this.onSubmit,
     this.onValidate,
-  })  : assert(duration != null),
-        assert(duration.inMilliseconds > 0),
-        assert(errorColor != null),
-        assert(errorIcon != null),
-        assert(icon != null),
+  })  : assert(duration.inMilliseconds > 0),
         super(key: key);
 
   /// Background color of the FAB for the default / steady state.  If not set
   /// this will default to the accent color of the current [Theme].
-  final Color color;
+  final Color? color;
 
   /// Optional controller to be able to listen for error state events as well as
   /// firing pressed and error events directly.
-  final FormFloatingActionButtonController controller;
+  final FormFloatingActionButtonController? controller;
 
   /// Duration for the error transition.
   final Duration duration;
@@ -73,7 +69,7 @@ class FormFloatingActionButton extends StatefulWidget {
   /// validation is successful.
   ///
   /// If [loading] is set to [true], this value will be ignored.
-  final VoidCallback onSubmit;
+  final VoidCallback? onSubmit;
 
   /// Set to a [null] value to disable validation and treat all pressed events
   /// as if they passed validation.  Set to a callback to perform validation on
@@ -82,7 +78,7 @@ class FormFloatingActionButton extends StatefulWidget {
   /// A return value of [true] states that validation was successful.  A return
   /// value of [faluse] states that an error was detected by the validation
   /// function and that [onSubmit] must not be called.
-  final ValueGetter<Future<bool>> onValidate;
+  final ValueGetter<Future<bool>>? onValidate;
 
   @override
   _FormFloatingActionButtonState createState() =>
@@ -98,9 +94,9 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   final Key _keyStandard = UniqueKey();
   final List<StreamSubscription> _subscriptions = [];
 
-  AnimationController _controller;
-  Color _fabColor;
-  FormFloatingActionButtonController _formFabController;
+  AnimationController? _controller;
+  Color? _fabColor;
+  late FormFloatingActionButtonController _formFabController;
 
   @override
   void initState() {
@@ -116,17 +112,17 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
     }));
 
     _subscriptions.add(_formFabController.addErrorListener((_) {
-      _controller.reset();
-      _controller.forward();
+      _controller!.reset();
+      _controller!.forward();
       _formFabController.state = FormFloatingActionButtonErrorState.START;
     }));
 
     _controller = AnimationController(
       vsync: this,
       duration: widget.duration,
-    )..addListener(() => _animationStreamController.add(_controller.value));
+    )..addListener(() => _animationStreamController.add(_controller!.value));
 
-    _controller.addStatusListener((status) {
+    _controller!.addStatusListener((status) {
       if (AnimationStatus.completed == status) {
         _formFabController.state = FormFloatingActionButtonErrorState.COMPLETE;
       }
@@ -144,7 +140,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
       end: widget.errorColor,
     ).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _controller!,
         curve: Interval(0.0, 0.2),
       ),
     );
@@ -157,7 +153,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
       end: widget.color,
     ).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _controller!,
         curve: Interval(0.8, 1.0),
       ),
     );
@@ -170,7 +166,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   void dispose() {
     _animationStreamController.close();
     _controller?.dispose();
-    _subscriptions?.forEach((stream) => stream.cancel());
+    _subscriptions.forEach((stream) => stream.cancel());
 
     super.dispose();
   }
@@ -178,7 +174,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   Future<void> _buttonPressed(BuildContext context) async {
     var valid = true;
     if (widget.onValidate != null) {
-      valid = await widget.onValidate();
+      valid = await widget.onValidate!();
     } else {
       var formState = Form.of(context);
       if (formState != null) {
@@ -187,7 +183,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
     }
 
     if (valid == true) {
-      widget.onSubmit();
+      widget.onSubmit!();
     } else {
       _formFabController.fireError();
     }
@@ -214,8 +210,8 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
         valueColor: AlwaysStoppedAnimation(Colors.white),
       );
     } else if (_controller == null ||
-        _controller.value == 0 ||
-        _controller.value == 1) {
+        _controller!.value == 0 ||
+        _controller!.value == 1) {
       child = Icon(
         widget.icon,
         key: _keyStandard,

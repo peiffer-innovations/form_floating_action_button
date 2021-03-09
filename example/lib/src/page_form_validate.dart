@@ -5,7 +5,7 @@ import 'package:form_floating_action_button/form_floating_action_button.dart';
 
 class PageFormValidate extends StatefulWidget {
   PageFormValidate({
-    Key key,
+    Key? key,
   }) : super(
           key: key,
         );
@@ -39,10 +39,10 @@ class _PageFormValidate extends State<PageFormValidate> {
                     _controller.firePressed();
                   },
                   validator: (value) {
-                    String error;
+                    String? error;
                     if (value?.isNotEmpty != true) {
                       error = 'Email is required';
-                    } else if (value.contains('@') != true ||
+                    } else if (value!.contains('@') != true ||
                         value.contains('.') != true) {
                       error = 'Email is not valid';
                     }

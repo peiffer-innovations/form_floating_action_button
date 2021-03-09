@@ -3,7 +3,7 @@ import 'package:form_floating_action_button/form_floating_action_button.dart';
 
 class PageOnValidate extends StatefulWidget {
   PageOnValidate({
-    Key key,
+    Key? key,
   }) : super(
           key: key,
         );
