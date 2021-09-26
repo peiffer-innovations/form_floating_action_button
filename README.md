@@ -6,6 +6,8 @@ A plugin to add some basic form functionality to the Floating Action Button.
 
 ## Demo
 
+[Live Web Example](https://peiffer-innovations.github.io/form_floating_action_button/web)
+
 ![Example](example.gif)
 
 ## Installation

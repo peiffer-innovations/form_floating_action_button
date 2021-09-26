@@ -1,3 +1,8 @@
+## [2.0.0+1] - September 26th, 2021
+
+* Added live web example
+
+
 ## [2.0.0] - March 9th, 2021
 
 * Null Safety

@@ -1,6 +1,6 @@
 name: form_floating_action_button
 description: A Floating Action Button that can be used in forms to provide loading and validation feedback
-version: 2.0.0
+version: 2.0.0+1
 homepage: https://github.com/peiffer-innovations/form_floating_action_button
 
 environment:
