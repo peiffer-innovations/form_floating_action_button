@@ -8,9 +8,9 @@ import 'package:vector_math/vector_math_64.dart' as v;
 /// transitions to an error state and back.  If the [Form] validation was
 /// successful, the FAB has a loading state.
 ///
-/// To disable the FAB, set the [onSubmit] to [null].  If [onSubmit] is a valid
+/// To disable the FAB, set the [onSubmit] to `null`.  If [onSubmit] is a valid
 /// callback then the FAB follows a specific sequence of events when pressed.
-/// First, it will attempt to call [onValidate].  If [onValidate] is [null],
+/// First, it will attempt to call [onValidate].  If [onValidate] is `null`,
 /// this will search for a [Form] on the widget tree and call the [validate]
 /// method in that form widget.  If either return [false], indicating an error
 /// is present, the FAB will transition to an error state and back.  If the
@@ -60,18 +60,18 @@ class FormFloatingActionButton extends StatefulWidget {
   final IconData icon;
 
   /// Set to [true] if the FAB should ignore all further pressed events and
-  /// should display a loading indicator.  Both [false] or [null] will be
+  /// should display a loading indicator.  Both [false] or `null` will be
   /// treated the same.
   final bool loading;
 
-  /// Set to a [null] value to disable pressed events for the FAB.  Set to a
+  /// Set to a `null` value to disable pressed events for the FAB.  Set to a
   /// valid callback function to be called when the FAB is pressed and
   /// validation is successful.
   ///
   /// If [loading] is set to [true], this value will be ignored.
   final VoidCallback? onSubmit;
 
-  /// Set to a [null] value to disable validation and treat all pressed events
+  /// Set to a `null` value to disable validation and treat all pressed events
   /// as if they passed validation.  Set to a callback to perform validation on
   /// pressed events before calling [onSubmit].
   ///
@@ -133,7 +133,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _fabColor = widget.color ?? Theme.of(context).accentColor;
+    _fabColor = widget.color ?? Theme.of(context).colorScheme.secondary;
 
     Animation startColor = ColorTween(
       begin: widget.color,
