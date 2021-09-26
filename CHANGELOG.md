@@ -1,4 +1,4 @@
-## [2.0.0+1] - September 26th, 2021
+## [2.0.0+2] - September 26th, 2021
 
 * Added live web example
 
