@@ -80,6 +80,7 @@ class FormFloatingActionButton extends StatefulWidget {
   /// function and that [onSubmit] must not be called.
   final ValueGetter<Future<bool>>? onValidate;
 
+  /// Creates the state of the button.
   @override
   _FormFloatingActionButtonState createState() =>
       _FormFloatingActionButtonState();
