@@ -9,15 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
+      - uses: actions/checkout@v2
+
+      - name: Validate
+        uses: peiffer-innovations/actions-flutter-validate@v1.1.1
         with:
-          channel: "stable"
-      - name: Dependencies
-        run: flutter packages upgrade
-      - name: Flutter Analyzer
-        run: flutter analyze
-      - name: Code Format
-        run: dart format --set-exit-if-changed lib test
-      - name: Run tests
-        run: flutter test
+          flutter_package: true
