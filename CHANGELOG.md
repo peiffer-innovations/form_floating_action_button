@@ -1,4 +1,4 @@
-## [2.0.0+3] - November 14th, 2021
+## [2.0.0+4] - November 14th, 2021
 
 * GH Workflow changes
 
