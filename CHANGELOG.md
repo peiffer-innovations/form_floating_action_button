@@ -1,3 +1,9 @@
+## [2.0.0+6] - January 3rd, 2022
+
+* Android v2 update
+* GH Workflow change
+
+
 ## [2.0.0+5] - January 3rd, 2022
 
 * Dart 2.15
