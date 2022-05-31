@@ -1,3 +1,8 @@
+## [2.0.0+7] - May, 31, 2022
+
+* Automated dependency updates
+
+
 ## [2.0.0+6] - January 3rd, 2022
 
 * Android v2 update
@@ -33,3 +38,4 @@
 ## [1.0.0] - April 23rd, 2019
 
 * Initial release.
+
