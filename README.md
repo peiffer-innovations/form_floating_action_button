@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [form_floating_action_button](#form_floating_action_button)
+  - [Demo](#demo)
+  - [Installation](#installation)
+  - [Usage Example](#usage-example)
+    - [Usage within a `Form`](#usage-within-a-form)
+    - [Custom On Validate](#custom-on-validate)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # form_floating_action_button
 
 ![Flutter Publisher](https://github.com/peiffer-innovations/form_floating_action_button/workflows/Flutter%20Publisher/badge.svg)
