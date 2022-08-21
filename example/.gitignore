@@ -14,7 +14,7 @@
 *.ipr
 *.iws
 .idea/
-
+.settings/
 # Visual Studio Code related
 .vscode/
 
@@ -30,6 +30,7 @@
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
+/.settings/
 **/android/captures/
 **/android/gradlew
 **/android/gradlew.bat
