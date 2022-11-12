@@ -3,19 +3,19 @@ description: 'A Floating Action Button that can be used in forms to provide load
 version: '2.0.0+7'
 homepage: 'https://github.com/peiffer-innovations/form_floating_action_button'
 
-environment: 
-  sdk: '>=2.17.0 <3.0.0'
+environment:
+  sdk: '>=2.18.0 <3.0.0'
 
-dependencies: 
-  flutter: 
+dependencies:
+  flutter:
     sdk: 'flutter'
   vector_math: '^2.1.2'
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  flutter_test:
     sdk: 'flutter'
 
-ignore_updates: 
+ignore_updates:
   - 'archive'
   - 'async'
   - 'boolean_selector'
