@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as v;
 
@@ -177,9 +178,11 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
     if (widget.onValidate != null) {
       valid = await widget.onValidate!();
     } else {
-      var formState = Form.of(context);
-      if (formState != null) {
+      try {
+        var formState = Form.of(context);
         valid = formState.validate();
+      } catch (e) {
+        // no-op
       }
     }
 
