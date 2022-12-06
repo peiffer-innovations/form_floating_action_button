@@ -24,15 +24,15 @@ class _PageFormValidate extends State<PageFormValidate> {
     return Form(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Form Validate'),
+          title: const Text('Form Validate'),
         ),
         body: Material(
           child: ListView(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                   ),
                   onFieldSubmitted: (_) {
@@ -59,7 +59,7 @@ class _PageFormValidate extends State<PageFormValidate> {
           loading: _loading,
           onSubmit: () {
             setState(() => _loading = true);
-            Future.delayed(Duration(seconds: 5)).then((_) {
+            Future.delayed(const Duration(seconds: 5)).then((_) {
               if (mounted) {
                 setState(() {
                   _loading = false;

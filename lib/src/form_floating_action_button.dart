@@ -137,26 +137,26 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
 
     _fabColor = widget.color ?? Theme.of(context).colorScheme.secondary;
 
-    Animation startColor = ColorTween(
+    final Animation startColor = ColorTween(
       begin: widget.color,
       end: widget.errorColor,
     ).animate(
       CurvedAnimation(
         parent: _controller!,
-        curve: Interval(0.0, 0.2),
+        curve: const Interval(0.0, 0.2),
       ),
     );
     startColor.addListener(() {
       _fabColor = startColor.value;
     });
 
-    Animation endColor = ColorTween(
+    final Animation endColor = ColorTween(
       begin: widget.errorColor,
       end: widget.color,
     ).animate(
       CurvedAnimation(
         parent: _controller!,
-        curve: Interval(0.8, 1.0),
+        curve: const Interval(0.8, 1.0),
       ),
     );
     endColor.addListener(() {
@@ -179,7 +179,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
       valid = await widget.onValidate!();
     } else {
       try {
-        var formState = Form.of(context);
+        final formState = Form.of(context);
         valid = formState.validate();
       } catch (e) {
         // no-op
@@ -198,7 +198,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   ///
   /// https://stackoverflow.com/questions/49609296/flipping-and-shaking-of-tile-animation-using-flutter-dart
   v.Vector3 _getTranslation() {
-    var progress = _controller?.value ?? 0;
+    final progress = _controller?.value ?? 0;
     var offset = sin(progress * pi * 5);
 
     offset *= 12;
@@ -211,7 +211,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
       child = CircularProgressIndicator(
         key: _keyLoading,
         strokeWidth: 2.0,
-        valueColor: AlwaysStoppedAnimation(Colors.white),
+        valueColor: const AlwaysStoppedAnimation(Colors.white),
       );
     } else if (_controller == null ||
         _controller!.value == 0 ||
@@ -231,7 +231,7 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
 
   @override
   Widget build(BuildContext context) {
-    var switchDuration =
+    final switchDuration =
         Duration(milliseconds: widget.duration.inMilliseconds ~/ 5);
 
     return StreamBuilder<double>(

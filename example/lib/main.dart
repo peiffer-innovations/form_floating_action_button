@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'src/page_form_validate.dart';
 import 'src/page_on_validate.dart';
 
@@ -48,9 +49,9 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('On Validate Example'),
+              child: const Text('On Validate Example'),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
@@ -61,7 +62,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Form Validate Example'),
+              child: const Text('Form Validate Example'),
             ),
           ],
         ),

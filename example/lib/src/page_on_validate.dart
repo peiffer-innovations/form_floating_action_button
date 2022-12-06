@@ -20,7 +20,7 @@ class _PageOnValidateState extends State<PageOnValidate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('On Validate'),
+        title: const Text('On Validate'),
       ),
       body: Material(
         child: ListView(
@@ -29,7 +29,7 @@ class _PageOnValidateState extends State<PageOnValidate> {
               onTap: () {
                 setState(() => _validateSuccess = !_validateSuccess);
               },
-              title: Text('Validation Successful'),
+              title: const Text('Validation Successful'),
               trailing: IgnorePointer(
                 child: Switch(
                   value: _validateSuccess,
@@ -44,7 +44,7 @@ class _PageOnValidateState extends State<PageOnValidate> {
         loading: _loading,
         onSubmit: () {
           setState(() => _loading = true);
-          Future.delayed(Duration(seconds: 5)).then((_) {
+          Future.delayed(const Duration(seconds: 5)).then((_) {
             if (mounted) {
               setState(() {
                 _loading = false;
