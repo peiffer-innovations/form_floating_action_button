@@ -1,10 +1,10 @@
 name: 'form_floating_action_button'
 description: 'A Floating Action Button that can be used in forms to provide loading and validation feedback'
-version: '2.1.0-prerelease.1'
+version: '2.1.0'
 homepage: 'https://github.com/peiffer-innovations/form_floating_action_button'
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 dependencies:
   flutter:

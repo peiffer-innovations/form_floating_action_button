@@ -1,3 +1,8 @@
+## [2.1.0] - January 24th, 2023
+
+* Flutter 3.7
+
+
 ## [2.1.0-prerelease.1] - November 28th, 2022
 
 * Prepare for Flutter 3.6
