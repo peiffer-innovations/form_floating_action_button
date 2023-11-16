@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'src/page_form_validate.dart';
 import 'src/page_on_validate.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  MyApp({
-    Key? key,
-  }) : super(
-          key: key,
-        );
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +17,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Form FAB Example'),
+      home: const MyHomePage(title: 'Form FAB Example'),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -44,7 +42,7 @@ class MyHomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return PageOnValidate();
+                      return const PageOnValidate();
                     },
                   ),
                 );
@@ -57,7 +55,7 @@ class MyHomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return PageFormValidate();
+                      return const PageFormValidate();
                     },
                   ),
                 );

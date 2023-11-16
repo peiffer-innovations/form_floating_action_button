@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:form_floating_action_button/form_floating_action_button.dart';
 
 class PageFormValidate extends StatefulWidget {
-  PageFormValidate({
-    Key? key,
-  }) : super(
-          key: key,
-        );
+  const PageFormValidate({
+    super.key,
+  });
 
   @override
-  _PageFormValidate createState() => _PageFormValidate();
+  State createState() => _PageFormValidate();
 }
 
 class _PageFormValidate extends State<PageFormValidate> {

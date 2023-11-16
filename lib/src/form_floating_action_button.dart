@@ -33,12 +33,11 @@ class FormFloatingActionButton extends StatefulWidget {
     this.errorColor = Colors.red,
     this.errorIcon = Icons.close,
     this.icon = Icons.arrow_forward,
-    Key? key,
+    super.key,
     this.loading = false,
     this.onSubmit,
     this.onValidate,
-  })  : assert(duration.inMilliseconds > 0),
-        super(key: key);
+  }) : assert(duration.inMilliseconds > 0);
 
   /// Background color of the FAB for the default / steady state.  If not set
   /// this will default to the accent color of the current [Theme].
@@ -83,8 +82,7 @@ class FormFloatingActionButton extends StatefulWidget {
 
   /// Creates the state of the button.
   @override
-  _FormFloatingActionButtonState createState() =>
-      _FormFloatingActionButtonState();
+  State createState() => _FormFloatingActionButtonState();
 }
 
 class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
@@ -168,7 +166,9 @@ class _FormFloatingActionButtonState extends State<FormFloatingActionButton>
   void dispose() {
     _animationStreamController.close();
     _controller?.dispose();
-    _subscriptions.forEach((stream) => stream.cancel());
+    for (var stream in _subscriptions) {
+      stream.cancel();
+    }
 
     super.dispose();
   }
@@ -323,6 +323,8 @@ class FormFloatingActionButtonController {
 }
 
 enum FormFloatingActionButtonErrorState {
+  // ignore: constant_identifier_names
   COMPLETE,
+  // ignore: constant_identifier_names
   START,
 }

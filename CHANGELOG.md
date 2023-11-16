@@ -1,3 +1,8 @@
+## [2.1.1] - November 15th, 2023
+
+* Standardized analysis rules
+
+
 ## [2.1.0] - January 24th, 2023
 
 * Flutter 3.7
